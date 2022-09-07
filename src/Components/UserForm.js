@@ -21,7 +21,7 @@ const UserForm = (props) => {
         value={inputValue}
         onChange={changeInputValueHandler}
         placeholder="Enter your name"/>
-      <button className="user-btn">Add Username</button>
+      <button className="user-btn">Add Name</button>
     </form>
   )
 }

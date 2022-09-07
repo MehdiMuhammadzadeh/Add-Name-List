@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import UserForm from "./Components/UserForm";
-import UserItem from "./UserItem";
+import UserItem from "./Components/UserItem";
 import './App.css'
 
 const App = () => {
