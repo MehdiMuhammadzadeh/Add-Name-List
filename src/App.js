@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import UserForm from "./Components/UserForm";
+import UserItem from "./UserItem";
+import './App.css'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+const App = () => {
+
+ const [users, setNewUsers] = useState([]);
+
+ const addUserNameHandler = (inputValue) => {
+  let id = 1;
+  if(users.length > 0) {
+    id = users[0].id + id;
+  }
+  let user = {id:id, inputValue: inputValue}
+  setNewUsers([user, ...users]);
+
+ }
+ const removeUserHandler = (id) =>{
+  let updatedUser = [...users].filter(user => user.id !== id);
+  setNewUsers(updatedUser);
+ }
+
+  return(
+    <div className="addUser-box">
+      <h1>Add Your Name</h1>
+      <UserForm onAddUserName={addUserNameHandler} />
+      {users.map(user=> {
+        return(
+          <UserItem onRemoveUser={removeUserHandler} user={user} key={user.id} />
+        )
+      })}
     </div>
-  );
+  )
 }
 
 export default App;
